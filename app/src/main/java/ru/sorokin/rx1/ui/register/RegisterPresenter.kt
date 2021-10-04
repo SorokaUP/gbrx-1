@@ -62,4 +62,28 @@ class RegisterPresenter(private val room: UserRepoImpl) : RegisterContract.Prese
         if (valueFirst != valueSecond)
             this.view?.onPasswordError(41)
     }
+
+    override fun onChangeLogin(value: String) {
+        if (value.isEmpty()) {
+            this.view?.onLoginError(50)
+        }
+        else
+        if (value.length > 80) {
+            this.view?.onLoginError(51)
+        }
+    }
+
+    override fun onChangeEmail(value: String) {
+        if (value.isEmpty()) {
+            this.view?.onEmailError(60)
+        }
+        else
+        if (value.length > 80) {
+            this.view?.onLoginError(61)
+        }
+        else
+        if (value != "@" && value != ".ru") {
+            this.view?.onLoginError(62)
+        }
+    }
 }

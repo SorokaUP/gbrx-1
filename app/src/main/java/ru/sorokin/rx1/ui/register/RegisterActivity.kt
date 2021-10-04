@@ -27,9 +27,19 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
     }
 
     private fun initView() {
+        doSetLoginListener()
         doSetFioListener()
         doSetButtonsListener()
         doSetOtherListener()
+    }
+
+    private fun doSetLoginListener() {
+        binding.login.addTextChangedListener {
+            presenter.onChangeLogin(it.toString())
+        }
+        binding.email.addTextChangedListener {
+            presenter.onChangeEmail(it.toString())
+        }
     }
 
     private fun doSetFioListener() {
@@ -114,6 +124,14 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
         binding.phone.error = getErrorByCode(code)
     }
 
+    override fun onLoginError(code: Int) {
+        binding.login.error = getErrorByCode(code)
+    }
+
+    override fun onEmailError(code: Int) {
+        binding.email.error = getErrorByCode(code)
+    }
+
     override fun onPasswordError(code: Int) {
         val msg = getErrorByCode(code)
         if (code == 40)
@@ -135,6 +153,13 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
 
             40 -> "Не введен пароль"
             41 -> "Пароли не совпадают"
+
+            50 -> "Не указан Логин"
+            51 -> "Не верный формат Логина"
+
+            60 -> "Не указан Email"
+            61 -> "Слишком большой Email"
+            62 -> "Не является Email"
 
             else -> "undefine"
         }

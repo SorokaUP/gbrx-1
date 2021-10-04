@@ -14,6 +14,8 @@ class RegisterContract {
         fun onFioError(code: Int)
         fun onPhoneError(code: Int)
         fun onPasswordError(code: Int)
+        fun onLoginError(code: Int)
+        fun onEmailError(code: Int)
     }
 
     interface Presenter {
@@ -23,6 +25,8 @@ class RegisterContract {
         fun onSave(user: User)
         fun onCancel()
 
+        fun onChangeLogin(value: String)
+        fun onChangeEmail(value: String)
         fun onChangeFName(value: String)
         fun onChangeLName(value: String)
         fun onChangePhone(value: String)
