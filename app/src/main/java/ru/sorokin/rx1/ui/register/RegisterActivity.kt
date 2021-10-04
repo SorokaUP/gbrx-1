@@ -27,21 +27,34 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
     }
 
     private fun initView() {
-        binding.btnSuccess.setOnClickListener {
-            presenter.onSave(buildUser())
-        }
-        binding.btnCancel.setOnClickListener {
-            presenter.onCancel()
-        }
-        binding.phone.addTextChangedListener {
-            presenter.onChangePhone(it.toString())
-        }
+        doSetFioListener()
+        doSetButtonsListener()
+        doSetOtherListener()
+    }
+
+    private fun doSetFioListener() {
         binding.fname.addTextChangedListener {
             presenter.onChangeFName(it.toString())
         }
         binding.lname.addTextChangedListener {
             presenter.onChangeLName(it.toString())
         }
+    }
+
+    private fun doSetButtonsListener() {
+        binding.btnSuccess.setOnClickListener {
+            presenter.onSave(buildUser())
+        }
+        binding.btnCancel.setOnClickListener {
+            presenter.onCancel()
+        }
+    }
+
+    private fun doSetOtherListener() {
+        binding.phone.addTextChangedListener {
+            presenter.onChangePhone(it.toString())
+        }
+
         binding.passwordRequired.addTextChangedListener {
             presenter.onChangePasswordRequired(binding.password.toString(), it.toString())
         }
@@ -59,9 +72,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
         )
 
     override fun setState(state: RegisterViewState) {
-        binding.progressBar.isVisible = false
-        binding.container.isVisible = false
-        binding.successImage.isVisible = false
+        doHideControls()
 
         when (state) {
             RegisterViewState.LOADING -> binding.progressBar.isVisible = true
@@ -72,6 +83,12 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
             }
             RegisterViewState.SUCCESS -> binding.successImage.isVisible = true
         }
+    }
+
+    private fun doHideControls() {
+        binding.progressBar.isVisible = false
+        binding.container.isVisible = false
+        binding.successImage.isVisible = false
     }
 
     override fun setUser(user: User) {
