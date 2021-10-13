@@ -1,0 +1,18 @@
+<resources>
+    <string name="fio_error_non_first_name">Не указано Имя</string>
+    <string name="fio_error_non_last_name">Не указана Фамилия</string>
+
+    <string name="phone_error_data">Не введен номер телефона</string>
+    <string name="phone_error_format">Номер телефона не соответствует формату</string>
+    <string name="phone_error_other_chars">Номер телефона содержит запрещенные символы</string>
+
+    <string name="password_error_data">Не введен пароль</string>
+    <string name="password_error_require">Пароли не совпадают</string>
+
+    <string name="login_error_data">Не указан Логин</string>
+    <string name="login_error_format">Не верный формат Логина</string>
+
+    <string name="email_error_data">Не указан Email</string>
+    <string name="email_error_large">Слишком большой Email</string>
+    <string name="email_error_valid">Не является Email</string>
+</resources>

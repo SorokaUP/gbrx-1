@@ -29,27 +29,27 @@ class RegisterPresenter(private val room: UserRepoImpl) : RegisterContract.Prese
 
     override fun onChangeFName(value: String) {
         if (value?.length == 0) {
-            this.view?.onFioError(10)
+            this.view?.onFioError(RegisterEnums.FioError.NON_FIRST_NAME.value)
         }
     }
 
     override fun onChangeLName(value: String) {
         if (value?.length == 0) {
-            this.view?.onFioError(20)
+            this.view?.onFioError(RegisterEnums.FioError.NON_LAST_NAME.value)
         }
     }
 
     override fun onChangePhone(value: String) {
         if (value.isEmpty()) {
-            this.view?.onFioError(30)
+            this.view?.onPhoneError(RegisterEnums.PhoneError.DATA.value)
         }
         else
         if (value.length > 11) {
-            this.view?.onFioError(31)
+            this.view?.onPhoneError(RegisterEnums.PhoneError.FORMAT.value)
         }
         else
         if (!value.isDigitsOnly())
-            this.view?.onFioError(32)
+            this.view?.onPhoneError(RegisterEnums.PhoneError.OTHER_CHARS.value)
     }
 
     override fun onCancel() {
@@ -58,32 +58,32 @@ class RegisterPresenter(private val room: UserRepoImpl) : RegisterContract.Prese
 
     override fun onChangePasswordRequired(valueFirst: String, valueSecond: String) {
         if (valueFirst.isEmpty())
-            this.view?.onPasswordError(40)
+            this.view?.onPasswordError(RegisterEnums.PasswordError.DATA.value)
         if (valueFirst != valueSecond)
-            this.view?.onPasswordError(41)
+            this.view?.onPasswordError(RegisterEnums.PasswordError.REQUIRE.value)
     }
 
     override fun onChangeLogin(value: String) {
         if (value.isEmpty()) {
-            this.view?.onLoginError(50)
+            this.view?.onLoginError(RegisterEnums.LoginError.DATA.value)
         }
         else
         if (value.length > 80) {
-            this.view?.onLoginError(51)
+            this.view?.onLoginError(RegisterEnums.LoginError.FORMAT.value)
         }
     }
 
     override fun onChangeEmail(value: String) {
         if (value.isEmpty()) {
-            this.view?.onEmailError(60)
+            this.view?.onEmailError(RegisterEnums.EmailError.DATA.value)
         }
         else
         if (value.length > 80) {
-            this.view?.onLoginError(61)
+            this.view?.onLoginError(RegisterEnums.EmailError.LARGE.value)
         }
         else
         if (value != "@" && value != ".ru") {
-            this.view?.onLoginError(62)
+            this.view?.onLoginError(RegisterEnums.EmailError.VALID.value)
         }
     }
 }
