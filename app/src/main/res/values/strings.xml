@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Rx1</string>
+    <string name="register_caption">REGISTER FORM</string>
+    <string name="login">login</string>
+    <string name="password">password</string>
+    <string name="password_required">password required</string>
+    <string name="email">email</string>
+    <string name="first_name">first name</string>
+    <string name="last_name">last name</string>
+    <string name="phone_hint">88007008000</string>
+    <string name="success_caption">ГОТОВО</string>
+    <string name="cancel_caption">отмена</string>
+    <string name="error_message">Ошибка</string>
 </resources>
